@@ -39,6 +39,7 @@ dependencies:
   pusher_channels: ^0.1.6
 
   flutter_local_notifications: ^9.4.0
+  workmanager: ^0.4.1
 
 dev_dependencies:
   flutter_test:

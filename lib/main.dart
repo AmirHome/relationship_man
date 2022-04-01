@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:pusher_channels/pusher_channels.dart';
 
@@ -5,23 +7,12 @@ import 'notification_service.dart';
 
 main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  NotificationService().init();
-
-
-  final pusher = Pusher(key: 'ecd279b8357d739168ee');
-  await pusher.connect();
-  final channel = pusher.subscribe('my-channel');
-
-  NotificationService _notificationService = NotificationService();
-
-  channel.bind('my-event', (event) async {
-    print('WOW event: $event');
-    await _notificationService.showNotifications(title:"Notification Title", message:"This is the Notification Body!");
-  });
-
-
 
   runApp(const MyApp());
+}
+
+void log(String string){
+  print("Log: $string");
 }
 
 class MyApp extends StatelessWidget {
@@ -31,11 +22,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Relationship pusher notify',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Relationship pusher notify'),
     );
   }
 }
@@ -51,6 +42,30 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+
+  void initState() {
+    super.initState();
+    
+    NotificationService().init();
+    NotificationService _notificationService = NotificationService();
+
+    bindPusherNotification(_notificationService);
+  }
+
+  Future<void> bindPusherNotification(NotificationService _notificationService) async {
+    final pusher = Pusher(key: 'ecd279b8357d739168ee');
+    await pusher.connect();
+    final channel = pusher.subscribe('my-channel');
+    
+    
+    channel.bind('my-event', (event) async {
+
+      log('event: ${event.runtimeType} $event');
+
+      Map<String, dynamic> jsonData = Map<String, dynamic>.from(event);
+      await _notificationService.showNotifications(title:"Notification Title", message: jsonData['message'].toString());
+    });
+  }
 
   void _incrementCounter() {
     setState(() {
