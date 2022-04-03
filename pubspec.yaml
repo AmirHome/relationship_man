@@ -41,6 +41,20 @@ dependencies:
   flutter_local_notifications: ^9.4.0
   workmanager: ^0.4.1
 
+  ## Firebase Core
+
+  ## Firebase Database
+
+  ## Firebase Auth
+
+  ## Firebase Analytics
+
+  ## Firebase Crashlytics
+
+  ## Firebase Performance
+
+  ## Firebase FCM Message
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
