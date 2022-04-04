@@ -36,13 +36,15 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   shared_preferences: ^2.0.13
+
   pusher_channels: ^0.1.6
 
   flutter_local_notifications: ^9.4.0
+
   # workmanager: ^0.4.1
 
   ## Firebase Core
-
+  firebase_core: ^1.14.0
   ## Firebase Database
 
   ## Firebase Auth
@@ -54,6 +56,9 @@ dependencies:
   ## Firebase Performance
 
   ## Firebase FCM Message
+  firebase_messaging: ^11.2.12
+
+  overlay_support: ^1.2.1
 
 dev_dependencies:
   flutter_test:

@@ -24,8 +24,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Relationship pusher notify',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
+      debugShowCheckedModeBanner: false,
       home: const MyHomePage(title: 'Relationship pusher notify'),
     );
   }
